@@ -32,7 +32,7 @@ module.exports = merge(baseConfig, {
         port: conf.port,
         inline: true,
         hot: true,
-        openPage: 'index.html',
+        openPage: 'system.html',
         disableHostCheck: true,
         proxy
         // proxy: {

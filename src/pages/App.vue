@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="layout">
-        <Button @click="login">clickme</Button>
+        <router-view></router-view>
     </div>
 </template>
 <script>
