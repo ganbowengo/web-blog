@@ -6,10 +6,7 @@
  * 
  */
 <template>
-    <div>
-        <div>我是Front主页</div>
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 </template>
 
 <script>

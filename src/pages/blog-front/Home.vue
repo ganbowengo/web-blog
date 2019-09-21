@@ -6,13 +6,22 @@
  * 
  */
 <template>
-    <div>Home</div>
+    <div class="main">
+        <Slider></Slider>
+        <Content></Content>
+    </div>
 </template>
  
 <script>
-export default {}
+import Slider from './components/Slider'
+import Content from './components/Content'
+export default {
+    data() {
+        return {}
+    },
+    components: {
+        Slider,
+        Content
+    }
+}
 </script>
- 
- <style>
- 
- </style>

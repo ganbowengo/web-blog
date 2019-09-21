@@ -38,6 +38,7 @@ module.exports = {
     },
     globals: {
         "MOCK": false,
-        "__dirname": false
+        "__dirname": false,
+        "require": false
     }
 }
