@@ -87,13 +87,24 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
                 use: {
                     loader: 'url-loader',
                     options: {
                         name: '[name]-[hash:5].min.[ext]',
                         limit: 5000,
                         outputPath: 'static/css/fonts'
+                    }
+                }
+            },
+            {
+                test: /\.(gif|jpg|png)\??.*$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        name: '[name]-[hash:5].min.[ext]',
+                        limit: 5000,
+                        outputPath: 'static/imgs'
                     }
                 }
             }

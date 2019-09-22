@@ -20,7 +20,12 @@ module.exports = merge(baseConfig, {
         rules: [{
             test: /\.scss$/,
             use: [
-                MiniCssExtractPlugin.loader,
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: '../../'
+                    }
+                },
                 'css-loader',
                 {
                     loader: 'postcss-loader',
