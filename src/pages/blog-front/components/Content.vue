@@ -7,8 +7,9 @@
                     <p>Content of card</p>
                     <p>Content of card</p>
                     <p>Content of card</p>
-                    <p>Content of card</p>
-                    <p>Content of card</p>
+                    <div class="card-footer">
+                        <Tag>HTML</Tag>
+                    </div>
                 </Card>
             </li>
         </ul>
@@ -58,9 +59,9 @@ export default {
         this.clientTop = this.$el.getBoundingClientRect().top
         this.handleScroll()
         if(this.clientTop) {  // 当前是小屏幕
-            document.getElementById('app').addEventListener('scroll', this.events = debounce(this.handleScroll,50))
+            document.getElementById('app').addEventListener('scroll', this.events = debounce(this.handleScroll,20))
         } else {
-            this.$el.addEventListener('scroll', this.events = debounce(this.handleScroll,50))
+            this.$el.addEventListener('scroll', this.events = debounce(this.handleScroll,10))
         }
     },
     methods:{

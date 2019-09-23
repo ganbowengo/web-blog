@@ -1,14 +1,15 @@
 <template>
-    <div id="app" class="layout">
+    <div id="app" :class="{'layout': true,'dark': theme}">
         <router-view></router-view>
     </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
-    computed:{
-    },
-    created() {
-
+    computed: {
+        ...mapGetters([
+            'theme'
+        ])
     },
     methods: {
         login(){

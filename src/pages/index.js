@@ -11,6 +11,7 @@ import router from './router/index.js'
 import http from '@/assets/js/http'
 import globalTool from '@/assets/utils/global'
 import initCommonUi from '@system/common-ui'
+import store from './vuex'
 
 import {
     Input,
@@ -32,5 +33,6 @@ initCommonUi()
 export default new Vue({
     el: '#app',
     router,
+    store,
     render: (h) => h(App)
 })

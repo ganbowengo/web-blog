@@ -6,6 +6,7 @@
  *
  */
 import Vue from 'vue'
+import Tag from './Tag.vue'
 import Label from './Label.vue'
 import LabelInput from './LabelInput.vue'
 import LabelDatepicker from './LabelDatepicker.vue'
@@ -13,6 +14,7 @@ import LabelSelect from './LabelSelect.vue'
 import LabelTree from './LabelTree.vue'
 
 export default function initCommonUi () {
+    Vue.component('Tag', Tag)
     Vue.component('Label', Label)
     Vue.component('LabelInput', LabelInput)
     Vue.component('LabelDatepicker', LabelDatepicker)

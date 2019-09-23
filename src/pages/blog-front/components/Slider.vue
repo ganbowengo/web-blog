@@ -12,10 +12,10 @@
                 <ul class="tag-list">
                     <li><a href=""><Icon type="md-home" /></a></li>
                     <li><a href=""><Icon type="md-pricetags" /></a></li>
-                    <li><a href=""><Icon type="md-sunny" /></a></li>
+                    <li><a @click='toggleTheme'><Icon type="md-sunny" /></a></li>
                     <li><a href=""><Icon type="md-images" /></a></li>
                     <li><a href=""><Icon type="md-link" /></a></li>
-                    <li><a href=""><Icon type="logo-github" /></a></li>
+                    <li><a href="https://github.com/ganbowengo" target="_blank"><Icon type="logo-github" /></a></li>
                 </ul>
             </div>
         </div>
@@ -24,6 +24,8 @@
 
 <script>
 const img = require('@/assets/imgs/header.jpg')
+import {mapActions} from 'vuex'
+import {randomBgColor} from '@/assets/js/common.js'
 export default {
     name:'slider',
     data() {
@@ -36,19 +38,18 @@ export default {
     },
     computed:{
         sliderHeaderBg(){
-            let r = this.randomInt()
-            let g = this.randomInt()
-            let b = this.randomInt()
-            return {
-                background: `rgb(${r},${g},${b})`
-            }
+            return randomBgColor()
         }
     },
     methods:{
-        randomInt(){
-            return Math.floor(Math.random() * 255)
+        ...mapActions([
+            'theme'
+        ]),
+        toggleTheme() {
+            this.theme(!this.$store.state.theme)
         }
-    }
+    },
+   
 }
 </script>
 

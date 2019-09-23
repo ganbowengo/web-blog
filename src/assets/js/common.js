@@ -26,3 +26,16 @@ export function debounce(func, wait, immediate) {
         }
     }
 }
+
+export function randomInt() {
+    return Math.floor(Math.random() * 255)
+}
+
+export function randomBgColor() {
+    let r = randomInt()
+    let g = randomInt()
+    let b = randomInt()
+    return {
+        background: `rgb(${r},${g},${b})`
+    }
+}
