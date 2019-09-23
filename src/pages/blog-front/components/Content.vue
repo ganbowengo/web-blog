@@ -2,16 +2,14 @@
     <div class="content">
         <ul class="content-list">
             <li v-for="item in list" :key='item.id'>
-                <transition :enter-active-class="animateClass" >
-                    <Card v-if='item.show' :bordered="false">
-                        <p slot="title">Borderless card</p>
-                        <p>Content of card</p>
-                        <p>Content of card</p>
-                        <p>Content of card</p>
-                        <p>Content of card</p>
-                        <p>Content of card</p>
-                    </Card>
-                </transition>
+                <Card style='opacity:0' :bordered="false">
+                    <p slot="title">Borderless card</p>
+                    <p>Content of card</p>
+                    <p>Content of card</p>
+                    <p>Content of card</p>
+                    <p>Content of card</p>
+                    <p>Content of card</p>
+                </Card>
             </li>
         </ul>
     </div>
@@ -38,18 +36,12 @@ export default {
         return {
             list: [],
             show: false,
-            index: 0
-        }
-    },
-    computed: {
-        animateClass() {
-            let len = animatedClasses.length
-            let index = Math.floor(Math.random() * len)
-            return `animated ${animatedClasses[index]}`
+            animatedClasses: '',
+            animatedClass: ''
         }
     },
     created(){
-        this.list = Array.from(Array(10),(item,index) => {
+        this.list = Array.from(Array(15),(item,index) => {
             return {
                 id: index,
                 show: false
@@ -57,13 +49,25 @@ export default {
         });
     },
     mounted() {
+        let len = animatedClasses.length
+        let index = Math.floor(Math.random() * len)
+        this.animatedClass = `animated ${animatedClasses[index]}`
+        console.log(this.animatedClass)
         this.clientHeight = this.$el.getBoundingClientRect().height
         this.handleScroll()
         this.$el.addEventListener('scroll', this.handleScroll)
     },
     methods:{
         handleScroll(){
-            this.list[this.index++].show = true
+            let li = this.$el.querySelectorAll('.content-list li>div')
+            Array.prototype.map.call(li, (item) => {
+                let top = item.getBoundingClientRect().top
+                if(top < (this.clientHeight)){
+                    let classes = item.getAttribute('class')
+                    item.setAttribute('class', classes + ' '+ this.animatedClass)
+                    item.style.opacity = 1
+                }
+            })
         }
     }
 }
