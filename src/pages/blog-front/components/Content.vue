@@ -30,6 +30,7 @@ const animatedClasses = (animatedConfig => {
     }
     return result
 })(animatedConfig)
+import { debounce } from '@/assets/js/common.js'
 export default {
     name: 'Content',
     data() {
@@ -37,7 +38,8 @@ export default {
             list: [],
             show: false,
             animatedClasses: '',
-            animatedClass: ''
+            animatedClass: '',
+            clientTop: 0
         }
     },
     created(){
@@ -52,22 +54,33 @@ export default {
         let len = animatedClasses.length
         let index = Math.floor(Math.random() * len)
         this.animatedClass = `animated ${animatedClasses[index]}`
-        console.log(this.animatedClass)
-        this.clientHeight = this.$el.getBoundingClientRect().height
+        this.clientHeight = document.body.clientHeight
+        this.clientTop = this.$el.getBoundingClientRect().top
         this.handleScroll()
-        this.$el.addEventListener('scroll', this.handleScroll)
+        if(this.clientTop) {  // 当前是小屏幕
+            document.getElementById('app').addEventListener('scroll', this.events = debounce(this.handleScroll,50))
+        } else {
+            this.$el.addEventListener('scroll', this.events = debounce(this.handleScroll,50))
+        }
     },
     methods:{
         handleScroll(){
             let li = this.$el.querySelectorAll('.content-list li>div')
             Array.prototype.map.call(li, (item) => {
                 let top = item.getBoundingClientRect().top
-                if(top < (this.clientHeight)){
-                    let classes = item.getAttribute('class')
-                    item.setAttribute('class', classes + ' '+ this.animatedClass)
+                let classes = item.getAttribute('class')
+                if(top < (this.clientHeight) && classes.indexOf('animated') < 0){
+                    item.setAttribute('class',classes + ' '+ this.animatedClass)
                     item.style.opacity = 1
                 }
             })
+            if(li[li.length-1].getAttribute('class').indexOf('animated') > 0){
+                if(this.clientTop) {
+                    document.body.removeEventListener('scroll', this.events = debounce(this.handleScroll,50))
+                } else {
+                    this.$el.removeEventListener('scroll', this.events = debounce(this.handleScroll,50))
+                }
+            }
         }
     }
 }
