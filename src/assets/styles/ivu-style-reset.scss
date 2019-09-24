@@ -89,3 +89,30 @@
         }
     }
 }
+
+.dark {
+    .ivu-card {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid #5f5454;
+
+        &:hover {
+            box-shadow: 0 1px 6px rgba(255, 255, 255, .7);
+        }
+
+        &-head {
+            border-bottom: 1px solid #5f5454;
+
+            p {
+                color: #cedaff;
+            }
+        }
+    }
+}
+
+.ivu-card {
+    background: rgba(255, 255, 255, 0.5);
+
+    .card-footer {
+        margin-top: 5px;
+    }
+}

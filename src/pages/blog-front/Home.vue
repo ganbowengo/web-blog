@@ -8,20 +8,20 @@
 <template>
     <div class="main">
         <Slider></Slider>
-        <Content></Content>
+        <transition name="zoomIn" appear>
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
  
 <script>
 import Slider from './components/Slider'
-import Content from './components/Content'
 export default {
     data() {
         return {}
     },
     components: {
-        Slider,
-        Content
+        Slider
     }
 }
 </script>

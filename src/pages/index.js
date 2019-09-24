@@ -11,8 +11,8 @@ import router from './router/index.js'
 import http from '@/assets/js/http'
 import globalTool from '@/assets/utils/global'
 import initCommonUi from '@system/common-ui'
+import 'mavon-editor/dist/css/index.css'
 import store from './vuex'
-
 import {
     Input,
     Icon,

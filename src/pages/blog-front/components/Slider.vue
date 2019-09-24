@@ -10,7 +10,7 @@
                 <p>{{describe}}</p>
                 <Input v-model="search"></Input>
                 <ul class="tag-list">
-                    <li><a href=""><Icon type="md-home" /></a></li>
+                    <li><a href="#/front"><Icon type="md-home" /></a></li>
                     <li><a href=""><Icon type="md-pricetags" /></a></li>
                     <li><a @click='toggleTheme'><Icon type="md-sunny" /></a></li>
                     <li><a href=""><Icon type="md-images" /></a></li>

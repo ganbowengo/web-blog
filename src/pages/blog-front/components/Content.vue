@@ -1,18 +1,20 @@
 <template>
     <div class="content">
-        <ul class="content-list">
+        <ul v-if='listShow' class="content-list">
             <li v-for="item in list" :key='item.id'>
                 <Card style='opacity:0' :bordered="false">
-                    <p slot="title">Borderless card</p>
+                    <p @click='handleClick(item.id)' slot="title">Borderless card</p>
                     <p>Content of card</p>
                     <p>Content of card</p>
                     <p>Content of card</p>
                     <div class="card-footer">
                         <Tag>HTML</Tag>
+                        <div class="fr readAll"  @click='handleClick(item.id)'>阅读全文>></div>
                     </div>
                 </Card>
             </li>
         </ul>
+        <div style="">123123</div>
     </div>
 </template>
 
@@ -37,6 +39,7 @@ export default {
     data() {
         return {
             list: [],
+            listShow: true,
             show: false,
             animatedClasses: '',
             animatedClass: '',
@@ -65,7 +68,7 @@ export default {
         }
     },
     methods:{
-        handleScroll(){
+        handleScroll() {
             let li = this.$el.querySelectorAll('.content-list li>div')
             Array.prototype.map.call(li, (item) => {
                 let top = item.getBoundingClientRect().top
@@ -82,6 +85,9 @@ export default {
                     this.$el.removeEventListener('scroll', this.events = debounce(this.handleScroll,50))
                 }
             }
+        },
+        handleClick(id) {
+            this.$router.push({ path: `/front/home/page/${id}`})
         }
     }
 }
